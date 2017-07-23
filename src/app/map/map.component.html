@@ -1,0 +1,7 @@
+<div>
+  <agm-map [latitude]='lat' [longitude]='long'>
+    <div *ngFor="let amulancePosition of markerPositions">
+      <agm-marker [latitude]="amulancePosition.latitude" [longitude]="amulancePosition.longitude"></agm-marker>
+    </div>
+    </agm-map>
+</div>
