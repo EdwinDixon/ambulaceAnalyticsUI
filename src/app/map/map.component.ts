@@ -99,16 +99,6 @@ export class MapComponent implements OnInit{
           this.markerPositions=[];
           clearInterval(timeoutId);
           console.log("time out id cleared");
-          this.FindNearbyAmbulanceService.getNearbyAmbulances(this.lat,this.long).subscribe(
-            res => {
-              _.forEach(res,ambulance => {
-                console.log(ambulance);
-
-                this.addMarkerPositions(ambulance.location.y,ambulance.location.x);
-              })
-
-            }
-          );
           var timeoutId = setInterval(() => {
             this.markerPositions=[];
             this.FindNearbyAmbulanceService.getNearbyAmbulances(this.lat,this.long).subscribe(
