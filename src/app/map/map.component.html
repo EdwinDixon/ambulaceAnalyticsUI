@@ -6,13 +6,16 @@
              class="form-control" #search [formControl]="searchControl">
     </div>
     <agm-map [latitude]='lat' [longitude]='long' [zoom]="zoom" >
-      <div *ngFor="let amulancePosition of markerPositions; let i = index">
-        <agm-marker [latitude]="amulancePosition.latitude" [longitude]="amulancePosition.longitude" (markerClick)="markerClick(amulancePosition, i)" [openInfoWindow]="false">
-          <agm-info-window [isOpen]="amulancePosition.isOpen">
-            <p>lat={{amulancePosition.latitude}}</p>
-            <p>long={{amulancePosition.longitude}}</p>
-            <p>license number={{amulancePosition.licensePlate}}</p>
-            <p>driver name={{amulancePosition.driverName}}</p>
+      <div *ngFor="let ambulancePosition of markerPositions; let i = index">
+        <agm-marker [latitude]="ambulancePosition.latitude" [longitude]="ambulancePosition.longitude" (markerClick)="markerClick(ambulancePosition, i)" [openInfoWindow]="false">
+          <agm-info-window [isOpen]="ambulancePosition.isOpen">
+            <p>lat={{ambulancePosition.latitude}}</p>
+            <p>long={{ambulancePosition.longitude}}</p>
+            <p>license number={{ambulancePosition.licensePlate}}</p>
+            <p>driver name={{ambulancePosition.driverName}}</p>
+            <p>status = {{ambulancePosition.status}}</p>
+            <p *ngIf="ambulancePosition.ridenumber">NumberOfRides = {{ambulancePosition.ridenumber}}</p>
+
 
           </agm-info-window>
         </agm-marker>

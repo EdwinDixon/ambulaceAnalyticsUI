@@ -35,7 +35,6 @@ export class AmbulancelistComponent implements OnInit {
 
     }
     ambulanceDetailClicked(id){
-        alert(id);
          this.router.navigate(['/AmbulanceRoute', id]);
     }
     ngDoCheck() {

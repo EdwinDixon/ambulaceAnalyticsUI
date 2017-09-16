@@ -10,7 +10,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let Detail of ambulanceData" (click)="ambulanceDetailClicked(Detail.ambulanceId)">
+  <tr *ngFor="let Detail of ambulanceData" (click)="ambulanceDetailClicked(Detail.licensePlateNumber)">
     <td>{{Detail.ambulanceId}}</td>
     <td>{{Detail.licensePlateNumber}}</td>
     <td>{{Detail.driverName}}</td>

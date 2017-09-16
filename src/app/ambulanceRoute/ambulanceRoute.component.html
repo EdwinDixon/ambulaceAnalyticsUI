@@ -3,14 +3,15 @@
         <div class="form-group">
 
         </div>
-        <agm-map [latitude]='lat' [longitude]='long' [zoom]="zoom" >
-            <agm-polyline  [title]="'DOT-to-DOT site'">
 
-                <agm-polyline-point [latitude]="55.880921" [longitude]="-4.274801"> </agm-polyline-point>
-                <agm-polyline-point [latitude]="55.880849" [longitude]="-4.27493"> </agm-polyline-point>
-                <agm-polyline-point [latitude]="55.880736" [longitude]="-4.274394"> </agm-polyline-point>
-                <agm-polyline-point [latitude]="55.880958" [longitude]="-4.274254"> </agm-polyline-point>
-                <agm-polyline-point [latitude]="55.880921" [longitude]="-4.274801"> </agm-polyline-point>
+        <agm-map [latitude]='lat' [longitude]='long' [zoom]="zoom" >
+
+            <agm-marker *ngIf = "incidentLocation" [latitude]="incidentLocation[0]" [longitude]="incidentLocation[1]"></agm-marker>
+
+            <agm-polyline *ngFor="let ambulanceRoute of ambulanceRoutes"  [title]="ambulanceRoute.date" strokeWeight="5" strokeColor="#FF0000">
+                <agm-polyline-point *ngFor="let routePoints of ambulanceRoute.routeTaken"
+                        [latitude]='routePoints[0]' [longitude]='routePoints[1]'>
+               </agm-polyline-point>
             </agm-polyline>
         </agm-map>
 
@@ -19,9 +20,6 @@
         <button class="btnclass" (click)="daily()">Daily</button>
         <button class="btnclass" (click)="weekly()">Weekly</button>
         <button class="btnclass"(click)="monthly()">Monthly</button>
-        <button class="btnclass" (click)="changeGradient()">Change gradient</button>
-        <button class="btnclass" (click)="changeRadius()">Change radius</button>
-        <button class="btnclass" (click)="toggleHeatmap()">Toggle Heatmap</button>
 
     </div>
 

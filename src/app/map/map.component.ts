@@ -4,6 +4,7 @@ import {MapsAPILoader} from '@agm/core';
 import {} from '@types/googlemaps';
 import {ActivatedRoute} from '@angular/router';
 import {Headers} from '@angular/http';
+import { AmbulanceRideNumberService } from '../services/ambulanceLocation/ambulanceRideNumber.service';
 import { AmbulanceLocationService } from '../services/ambulanceLocation/ambulanceLocation.service';
 import { FindNearbyAmbulanceService } from '../services/ambulanceLocation/FindNearbyAmbulance.service';
 import * as _ from "lodash";
@@ -12,7 +13,7 @@ import {FormControl} from "@angular/forms";
   selector: 'map',
   templateUrl: './map.component.html',
   styleUrls: [ './map.component.css'],
-  providers: [ FindNearbyAmbulanceService ]
+  providers: [ FindNearbyAmbulanceService,AmbulanceRideNumberService ]
 })
 
 export class MapComponent implements OnInit, OnDestroy{
@@ -29,7 +30,8 @@ export class MapComponent implements OnInit, OnDestroy{
 
 
   constructor(private FindNearbyAmbulanceService: FindNearbyAmbulanceService, private mapsAPILoader: MapsAPILoader,
-              private ngZone: NgZone, private route: ActivatedRoute){}
+              private ngZone: NgZone, private route: ActivatedRoute,
+  private ambulanceRideNumberService:AmbulanceRideNumberService){}
 
   setCurrentUserPosition(coordinates){
     console.log(coordinates);
@@ -50,12 +52,13 @@ export class MapComponent implements OnInit, OnDestroy{
     }
   }
 
-  addMarkerPositions(latitude,longitude,licensePlate,driverName){
+  addMarkerPositions(latitude,longitude,licensePlate,driverName,status){
    this.markerPositions.push({
      latitude:latitude,
      longitude:longitude,
        licensePlate:licensePlate,
-       driverName:driverName
+       driverName:driverName,
+       status:status
    })
   }
 
@@ -107,10 +110,9 @@ export class MapComponent implements OnInit, OnDestroy{
             this.FindNearbyAmbulanceService.getNearbyAmbulances(this.lat,this.long).subscribe(
               res => {
                 _.forEach(res, ambulance => {
-                  console.log(ambulance + 'kooo');
 
                   this.addMarkerPositions(ambulance.location.y, ambulance.location.x,
-                  ambulance.licensePlateNumber, ambulance.driverName );
+                  ambulance.licensePlateNumber, ambulance.driverName,ambulance.status );
                 });
 
               }
@@ -122,6 +124,13 @@ export class MapComponent implements OnInit, OnDestroy{
     });
   }
 markerClick(position: any, index: number) {
+      console.log("position ",position)
+   this.ambulanceRideNumberService.getRideNumberDetails(position.licensePlate).subscribe(
+       res => {
+           console.log(res);
+           position.ridenumber = res;
+       }
+   )
   position['isOpen'] = true;
   if (this._lastOpenIndex > -1) {
     this.markerPositions[this._lastOpenIndex]['isOpen'] = false;
