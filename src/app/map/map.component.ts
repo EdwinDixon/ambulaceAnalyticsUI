@@ -1,20 +1,21 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild, OnDestroy} from '@angular/core';
 import {NgZone } from '@angular/core';
 import {MapsAPILoader} from '@agm/core';
 import {} from '@types/googlemaps';
+import {ActivatedRoute} from '@angular/router';
 import {Headers} from '@angular/http';
 import { AmbulanceLocationService } from '../services/ambulanceLocation/ambulanceLocation.service';
-import { FindNearbyAmbulanceService } from '../services/ambulanceLocation/FindNearbyAmbulance.service'
+import { FindNearbyAmbulanceService } from '../services/ambulanceLocation/FindNearbyAmbulance.service';
 import * as _ from "lodash";
 import {FormControl} from "@angular/forms";
 @Component({
   selector: 'map',
   templateUrl: './map.component.html',
-  styleUrls:['./map.component.css'],
-  providers:[FindNearbyAmbulanceService]
+  styleUrls: [ './map.component.css'],
+  providers: [ FindNearbyAmbulanceService ]
 })
 
-export class MapComponent implements OnInit{
+export class MapComponent implements OnInit, OnDestroy{
 
   public lat;
   public long;
@@ -27,8 +28,8 @@ export class MapComponent implements OnInit{
 
 
 
-  constructor(private FindNearbyAmbulanceService:FindNearbyAmbulanceService, private mapsAPILoader: MapsAPILoader,
-              private ngZone: NgZone){}
+  constructor(private FindNearbyAmbulanceService: FindNearbyAmbulanceService, private mapsAPILoader: MapsAPILoader,
+              private ngZone: NgZone, private route: ActivatedRoute){}
 
   setCurrentUserPosition(coordinates){
     console.log(coordinates);
@@ -62,7 +63,7 @@ export class MapComponent implements OnInit{
       this.searchControl = new FormControl();
 
 
-    };
+    }
 
     this.setCurrentPosition();
 
@@ -85,7 +86,7 @@ export class MapComponent implements OnInit{
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
           //get the place result
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+        let place: google.maps.places.PlaceResult = autocomplete.getPlace();
 
           //verify result
           if (place.geometry === undefined || place.geometry === null) {
@@ -103,11 +104,11 @@ export class MapComponent implements OnInit{
             this.markerPositions=[];
             this.FindNearbyAmbulanceService.getNearbyAmbulances(this.lat,this.long).subscribe(
               res => {
-                _.forEach(res,ambulance => {
-                  console.log(ambulance);
+                _.forEach(res, ambulance => {
+                  console.log(ambulance + 'kooo');
 
-                  this.addMarkerPositions(ambulance.location.y,ambulance.location.x);
-                })
+                  this.addMarkerPositions(ambulance.location.y, ambulance.location.x);
+                });
 
               }
             );
@@ -118,6 +119,6 @@ export class MapComponent implements OnInit{
     });
   }
 
-
+ngOnDestroy(){ }
 
 }

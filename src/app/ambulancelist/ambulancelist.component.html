@@ -1,0 +1,23 @@
+
+<div class="container" style="margin-top:4px;">
+<table datatable class="row-border hover">
+  <thead>
+  <tr>
+    <th>AmbulanceID</th>
+    <th>PlateNumber</th>
+    <th>DriverName</th>
+    <th>OwnerShip</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let Detail of Details">
+    <td>{{Detail.ambulanceId}}</td>
+    <td>{{Detail.licensePlateNumber}}</td>
+    <td>{{Detail.driverName}}</td>
+    <td>{{Detail.ownerShip}}</td>
+  </tr>
+
+  </tbody>
+</table>
+
+</div>

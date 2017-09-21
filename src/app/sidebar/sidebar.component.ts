@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { HeatmapComponent } from '../heatmap/heatmap.component';
 @Component({
   selector: 'sidebar',
   templateUrl:'./sidebar.component.html',
@@ -10,6 +10,6 @@ export class SidebarComponent implements OnInit {
   constructor(){ }
   public list;
   ngOnInit(){
-    this.list = ["nearby","heat map"];
+    this.list = ["Home","Heat map"];
   }
 }

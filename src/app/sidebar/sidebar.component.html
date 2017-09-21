@@ -1,8 +1,8 @@
-
 <div class="side-bar">
-  <ol>
-    <div *ngFor="let content of list">
-      <a md-list-item href="#">{{content}}</a><br/>
-    </div>
-  </ol>
+    <ul class="menu">
+
+        <li> <a [routerLink]="['Home']" routerLinkActive="activate">Home</a></li>
+        <li> <a [routerLink]="['Heatmap']" routerLinkActive="activate">Heatmap</a></li>
+        <li> <a [routerLink]="['Ambulancelist']" routerLinkActive="activate">Ambulancelist</a></li>
+    </ul>
 </div>

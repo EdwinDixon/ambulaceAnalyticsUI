@@ -1,5 +1,30 @@
 .side-bar{
-  width:200px;
-  height:100vh;
-  background-color:#00ffff;
+    width:200px;
+    height:100vh;
+    background-color:#303030;
+    border:1px solid #464545;
+}
+.menu
+{
+    list-style: none;
+    padding: 0;
+
+}
+.menu li
+{
+    line-height: 30px;
+    padding:0;
+}
+
+.menu li a{
+    display:block;
+    padding:5px;
+    text-decoration: none;
+    color:#0ce3ac;
+    text-indent:8px;
+}
+.menu li a:hover
+{
+    background:#222222 ;
+    color:white;
 }

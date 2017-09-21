@@ -1,10 +1,18 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="layout">
-<md-sidenav-container class="sidenavContainer">
-  <md-sidenav #sidenav mode="side" opened="true" class="sidebar">
-  <sidebar></sidebar>
-  </md-sidenav>
-  <map></map>
-</md-sidenav-container>
+
+<div class="topwrap">
+  <div class="btnclass"><span md-button (click)="sidenav.toggle()" >&#9776;</span></div>
+  <div style="float: left"><nav class="tophead">Ambulance Tracking</nav>
+  </div>
 </div>
 
+<div class="layout">
+<md-sidenav-container class="sidenavContainer">
+  <md-sidenav #sidenav mode="side" class="sidebar">
+  <sidebar></sidebar>
+  </md-sidenav>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</md-sidenav-container>
+</div>
