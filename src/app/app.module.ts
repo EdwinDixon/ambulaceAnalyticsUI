@@ -14,8 +14,11 @@ import { MdSidenavModule } from '@angular/material';
 import { MapComponent } from "./map/map.component";
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HeatmapComponent } from './heatmap/heatmap.component';
+import {AccidentProneAreasComponent} from './accidentProneAreas/accidentProneAreas.component'
 import { AmbulancelistComponent } from './ambulancelist/ambulancelist.component';
 import { AmbulanceRouteComponent } from './ambulanceRoute/ambulanceRoute.component';
+import { AmbulanceHighProximityAreasComponent } from './ambulanceHighProximityAreas/ambulanceHighProximityAreas.component';
+import {UsualAmbulanceRoutesComponent} from './usualAmbulanceRoutes/usualAmbulanceRoutes.component';
 import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
@@ -24,8 +27,11 @@ import { DataTablesModule } from 'angular-datatables';
     SidebarComponent,
     MapComponent,
     HeatmapComponent,
+    AccidentProneAreasComponent,
     AmbulancelistComponent,
-    AmbulanceRouteComponent
+      UsualAmbulanceRoutesComponent,
+    AmbulanceRouteComponent,
+    AmbulanceHighProximityAreasComponent
   ],
   imports: [
       routes,

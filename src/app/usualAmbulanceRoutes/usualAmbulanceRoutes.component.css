@@ -1,0 +1,18 @@
+agm-map {
+    height: 100vh;
+}
+.form-group
+{
+    margin-top:5px;
+}
+#floating-panel {
+
+    background-color: #fff;
+    font-family: 'Roboto','sans-serif';
+    left: 25%;
+    line-height: 30px;
+    padding: 5px;
+    padding-left: 10px;
+    top: 10px;
+
+}

@@ -61,6 +61,7 @@ export class HeatmapComponent implements OnInit, OnDestroy  {
   ngOnInit(): void {
 
   console.log("hello bose");
+  console.log("heat map layer ",this.heatmapLayer);
       this.heatmapLayer['initialized$'].subscribe(heatmap => {
         console.log(heatmap);
 /*        this.points = [
@@ -139,15 +140,16 @@ export class HeatmapComponent implements OnInit, OnDestroy  {
   daily() {
     console.log("clicked");
      this.type = 'daily';
-     console.log(this.type + 'kunjan');
-     this.heatmapdetails.getHeatMapDetails(this.type).subscribe(res => {
-       this.points = [];
-       _.forEach(res, data => {
-         this.points.push(new google.maps.LatLng(data.incidentLatLng[0],
-             data.incidentLatLng[1]));
-         this.heatmap.setData(this.points);
-       });
-     });
+       console.log("id "+this.route.snapshot.params['id']);
+      this.heatmapdetails.getHeatMapDetails(this.type).subscribe(res => {
+        this.points = [];
+        _.forEach(res, data => {
+          this.points.push(new google.maps.LatLng(data.incidentLatLng[0],
+              data.incidentLatLng[1]));
+          this.heatmap.setData(this.points);
+        });
+      });
+
 
   }
   monthly() {

@@ -1,0 +1,25 @@
+<div>
+    <div class="container">
+        <div class="form-group">
+
+        </div>
+
+        <agm-map [latitude]='lat' [longitude]='long' [zoom]="zoom" >
+
+
+            <agm-polyline *ngFor="let ambulanceRoute of ambulanceRoutes"  [title]="ambulanceRoute.date" strokeWeight="5" strokeColor="#FF0000">
+                <agm-polyline-point *ngFor="let routePoints of ambulanceRoute.routeTaken"
+                                    [latitude]='routePoints[0]' [longitude]='routePoints[1]'>
+                </agm-polyline-point>
+            </agm-polyline>
+        </agm-map>
+
+    </div>
+    <div id="floating-panel">
+        <button class="btnclass" (click)="daily()">Daily</button>
+        <button class="btnclass" (click)="weekly()">Weekly</button>
+        <button class="btnclass"(click)="monthly()">Monthly</button>
+
+    </div>
+
+</div>

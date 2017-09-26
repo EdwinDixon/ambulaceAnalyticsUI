@@ -1,0 +1,22 @@
+#floating-panel {
+
+    background-color: #fff;
+    font-family: 'Roboto','sans-serif';
+    left: 25%;
+    line-height: 30px;
+    padding: 5px;
+    padding-left: 10px;
+    top: 10px;
+
+}
+.form-group
+{
+    margin-top:5px;
+}
+.btnclass
+{
+    background: #0b72bd;
+    color: white;
+    border:none;
+    border-radius: 5px;
+}

@@ -1,0 +1,20 @@
+
+<div class="container">
+
+    <ngui-map zoom="13" [center]='center'  style="height: 500px;">
+
+        <heatmap-layer [data]="points"></heatmap-layer>
+        <div id="floating-panel">
+            <button class="btnclass" (click)="daily()">Daily</button>
+            <button class="btnclass" (click)="weekly()">Weekly</button>
+            <button class="btnclass"(click)="monthly()">Monthly</button>
+            <button class="btnclass" (click)="changeGradient()">Change gradient</button>
+            <button class="btnclass" (click)="changeRadius()">Change radius</button>
+            <button class="btnclass" (click)="toggleHeatmap()">Toggle Heatmap</button>
+
+        </div>
+    </ngui-map>
+</div>
+
+
+
