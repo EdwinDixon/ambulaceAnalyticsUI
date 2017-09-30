@@ -62,7 +62,8 @@ export class HeatmapComponent implements OnInit, OnDestroy  {
 
   console.log("hello bose");
       this.heatmapLayer['initialized$'].subscribe(heatmap => {
-        this.points = [
+        console.log(heatmap);
+/*        this.points = [
           new google.maps.LatLng(37.782551, -122.445368),
           new google.maps.LatLng(37.782745, -122.444586),
           new google.maps.LatLng(37.782842, -122.443688),
@@ -75,9 +76,10 @@ export class HeatmapComponent implements OnInit, OnDestroy  {
           new google.maps.LatLng(9.986706, 76.301188),
           new google.maps.LatLng(9.986716, 76.301178),
           new google.maps.LatLng(9.986786, 76.301198)
-        ];
+        ];*/
         this.heatmap = heatmap;
         this.map = this.heatmap.getMap();
+        this.daily();
 
 
     });
@@ -135,12 +137,16 @@ export class HeatmapComponent implements OnInit, OnDestroy  {
     this.heatmap.set('radius', this.heatmap.get('radius') ? null : 20);
   }
   daily() {
+    console.log("clicked");
      this.type = 'daily';
      console.log(this.type + 'kunjan');
      this.heatmapdetails.getHeatMapDetails(this.type).subscribe(res => {
-     _.forEach(res, data => {
-     console.log(data);
-     });
+       this.points = [];
+       _.forEach(res, data => {
+         this.points.push(new google.maps.LatLng(data.incidentLatLng[0],
+             data.incidentLatLng[1]));
+         this.heatmap.setData(this.points);
+       });
      });
 
   }
@@ -148,8 +154,11 @@ export class HeatmapComponent implements OnInit, OnDestroy  {
     this.type = 'monthly';
     console.log(this.type + 'kunjan');
     this.heatmapdetails.getHeatMapDetails(this.type).subscribe(res => {
+      this.points = [];
       _.forEach(res, data => {
-        console.log(data);
+        this.points.push(new google.maps.LatLng(data.incidentLatLng[0],
+            data.incidentLatLng[1]));
+        this.heatmap.setData(this.points);
       });
     });
   }
@@ -157,8 +166,11 @@ export class HeatmapComponent implements OnInit, OnDestroy  {
     this.type = 'weekly';
     console.log(this.type + 'kunjan');
     this.heatmapdetails.getHeatMapDetails(this.type).subscribe(res => {
+      this.points = [];
       _.forEach(res, data => {
-        console.log(data);
+        this.points.push(new google.maps.LatLng(data.incidentLatLng[0],
+        data.incidentLatLng[1]));
+        this.heatmap.setData(this.points);
       });
     });
   }

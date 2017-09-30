@@ -22,7 +22,7 @@ export class MapComponent implements OnInit, OnDestroy{
   public markerPositions=[];
   public searchControl: FormControl;
   public zoom: number;
-
+ private _lastOpenIndex: number = -1;
   @ViewChild("search")
   public searchElementRef: ElementRef;
 
@@ -50,10 +50,12 @@ export class MapComponent implements OnInit, OnDestroy{
     }
   }
 
-  addMarkerPositions(latitude,longitude){
+  addMarkerPositions(latitude,longitude,licensePlate,driverName){
    this.markerPositions.push({
      latitude:latitude,
-     longitude:longitude
+     longitude:longitude,
+       licensePlate:licensePlate,
+       driverName:driverName
    })
   }
 
@@ -98,27 +100,34 @@ export class MapComponent implements OnInit, OnDestroy{
           this.long = place.geometry.location.lng();
           this.zoom = 15;
           this.markerPositions=[];
-          clearInterval(timeoutId);
+          // clearInterval(timeoutId);
           console.log("time out id cleared");
-          var timeoutId = setInterval(() => {
+          // var timeoutId = setInterval(() => {
             this.markerPositions=[];
             this.FindNearbyAmbulanceService.getNearbyAmbulances(this.lat,this.long).subscribe(
               res => {
                 _.forEach(res, ambulance => {
                   console.log(ambulance + 'kooo');
 
-                  this.addMarkerPositions(ambulance.location.y, ambulance.location.x);
+                  this.addMarkerPositions(ambulance.location.y, ambulance.location.x,
+                  ambulance.licensePlateNumber, ambulance.driverName );
                 });
 
               }
             );
-          }, 2000);
+          // }, 2000);
 
         });
       });
     });
   }
-
+markerClick(position: any, index: number) {
+  position['isOpen'] = true;
+  if (this._lastOpenIndex > -1) {
+    this.markerPositions[this._lastOpenIndex]['isOpen'] = false;
+    this._lastOpenIndex = index;
+  }
+}
 ngOnDestroy(){ }
 
 }

@@ -6,6 +6,7 @@ import {Observable} from "rxjs/Rx";
 import { NguiUtilsModule } from '@ngui/utils';
 import { NguiMapModule } from '@ngui/map';
 import {routes} from './app.router';
+import { Ng2TableModule } from 'ng2-table/ng2-table';
 
 import { AppComponent } from './app.component';
 import {SidebarComponent} from "./sidebar/sidebar.component";
@@ -14,6 +15,7 @@ import { MapComponent } from "./map/map.component";
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HeatmapComponent } from './heatmap/heatmap.component';
 import { AmbulancelistComponent } from './ambulancelist/ambulancelist.component';
+import { AmbulanceRouteComponent } from './ambulanceRoute/ambulanceRoute.component';
 import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
@@ -23,6 +25,7 @@ import { DataTablesModule } from 'angular-datatables';
     MapComponent,
     HeatmapComponent,
     AmbulancelistComponent,
+    AmbulanceRouteComponent
   ],
   imports: [
       routes,
@@ -33,6 +36,7 @@ import { DataTablesModule } from 'angular-datatables';
     HttpModule,
     BrowserModule,
     DataTablesModule,
+      Ng2TableModule,
     FormsModule, ReactiveFormsModule,
     MdSidenavModule,
     AgmCoreModule.forRoot({

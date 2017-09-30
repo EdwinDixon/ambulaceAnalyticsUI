@@ -19,6 +19,7 @@ export class AmbulanceLocationService {
       return this.http.get(url).map(
       res => {
         const data = res.json();
+        return data;
       }
   );
   }

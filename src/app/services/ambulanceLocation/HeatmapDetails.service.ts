@@ -14,10 +14,12 @@ export class HeatmapDetailsService {
 
     getHeatMapDetails(type): Observable<any> {
         this.type = type;
-        const url = 'http://localhost:8000/heatMap' + '/' + this.type;
+        var url = 'http://localhost:8000/heatMap' + '/' + this.type;
+        console.log(url)
         return this.http.get(url).map(
             res => {
                 const data = res.json();
+                return data;
             }
         );
     }
